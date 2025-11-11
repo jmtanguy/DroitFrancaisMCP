@@ -146,10 +146,30 @@ def rechercher_droit_francais(
 
         filtres_dates (Dict[str, Dict[str, str]], optional): Filtres par périodes de dates.
             Format: {"facette": {"start": "YYYY-MM-DD", "end": "YYYY-MM-DD"}}
-            EXEMPLES:
-            - {"DATE_SIGNATURE": {"start": "2020-01-01", "end": "2023-12-31"}}
-            - {"DATE_PUBLICATION": {"start": "2022-01-01", "end": "2022-12-31"}}
-            - {"DATE_DECISION": {"start": "2021-01-01", "end": "2024-12-31"}}
+
+            ⚠️ IMPORTANT: Les filtres de dates ne sont PAS supportés par tous les fonds!
+
+            **FONDS SUPPORTANT LES FILTRES DE DATES:**
+            - JORF: DATE_SIGNATURE, DATE_PUBLICATION, DATE_PARUTION
+            - LODA_DATE, LODA_ETAT: DATE_SIGNATURE, DATE_PUBLICATION, DATE_VERSION
+            - JURI, CETAT, JUFI: DATE_DECISION, DATE_ARRET
+            - CONSTIT: DATE_DECISION
+            - KALI: DATE_PUBLICATION, DATE_EFFET
+            - CIRC: DATE_SIGNATURE, DATE_CREATION, DATE_EXPORT
+            - ACCO: DATE_CREATION, DATE_EFFET, DATE_DEPOT
+            - CNIL: DATE_DELIBERATION
+
+            **FONDS NE SUPPORTANT PAS LES FILTRES DE DATES:**
+            - CODE_DATE, CODE_ETAT: ❌ NE PAS utiliser de filtres de dates!
+              → Utilisez uniquement les filtres de valeurs (ETAT_JURIDIQUE, TEXT_NOM_CODE)
+
+            EXEMPLES D'USAGE CORRECT:
+            - {"DATE_SIGNATURE": {"start": "2020-01-01", "end": "2023-12-31"}}  # Pour JORF, LODA
+            - {"DATE_PUBLICATION": {"start": "2022-01-01", "end": "2022-12-31"}}  # Pour JORF, LODA, KALI
+            - {"DATE_DECISION": {"start": "2021-01-01", "end": "2024-12-31"}}  # Pour JURI, CETAT
+
+            ❌ ERREUR: Ne pas utiliser filtres_dates avec fond="CODE_ETAT" ou "CODE_DATE"
+            ✅ CORRECT: Utiliser filtres_valeurs={"ETAT_JURIDIQUE": ["VIGUEUR"]} avec CODE_ETAT
 
         page_number (int): Numéro de la page. Défaut: 1
 
@@ -183,23 +203,24 @@ def rechercher_droit_francais(
             page_size=20
         )
 
-        # Recherche de lois sur le divorce depuis 2020
+        # Recherche de lois sur le divorce depuis 2020 (avec filtre de dates)
         rechercher_droit_francais_etendue(
             query="divorce",
-            fond="LODA_ETAT",
+            fond="LODA_ETAT",  # LODA supporte les filtres de dates
             type_recherche="EXACTE",
             filtres_valeurs={"NATURE": ["LOI"]},
             filtres_dates={"DATE_SIGNATURE": {"start": "2020-01-01", "end": "2024-12-31"}},
             sort="SIGNATURE_DATE_DESC"
         )
 
-        # Recherche dans les articles du Code pénal
+        # Recherche dans les articles du Code pénal (CODE ne supporte PAS les filtres de dates)
         rechercher_droit_francais_etendue(
             query="vol",
-            fond="CODE_ETAT",
+            fond="CODE_ETAT",  # CODE_ETAT ne supporte PAS les filtres de dates!
             code_name="Code pénal",
             type_champ="ARTICLE",
-            type_recherche="UN_DES_MOTS"
+            type_recherche="UN_DES_MOTS",
+            filtres_valeurs={"ETAT_JURIDIQUE": ["VIGUEUR"]}  # Utiliser filtres_valeurs uniquement
         )
 
         # Recherche jurisprudentielle à la Cour de cassation

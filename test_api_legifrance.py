@@ -131,6 +131,12 @@ def test_search_in_title(api):
 
     assert results is not None
 
+def test_search_with_date(api):
+    """Test la recherche avec filtre de dates - utilise JORF car CODE_ETAT ne supporte pas les filtres de dates"""
+
+    results = api.search(query="environnement", fond="JORF", page_size=5, filtres_dates={"DATE_SIGNATURE": {"start": "2022-01-01", "end": "2022-12-31"}} )
+
+    assert results is not None
 
 def test_article_legiarti(api):
     """Test la récupération d'un article de loi (LEGIARTI)"""

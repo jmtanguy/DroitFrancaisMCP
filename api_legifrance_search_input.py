@@ -730,19 +730,26 @@ class LegiFranceSearchInput:
         Args:
             facette (str): Nom de la facette de date => nom du filtre.
 
+                ⚠️ IMPORTANT: Les filtres de dates ne sont PAS supportés par tous les fonds!
+                Les fonds CODE_DATE et CODE_ETAT ne supportent PAS les filtres de dates.
+
                 **FACETTES DE DATES PRINCIPALES:**
 
                 - **DATE_SIGNATURE** : Date de signature du texte
-                  Applicable aux fonds: JORF, LODA, CODE, CIRC
+                  Applicable aux fonds: JORF, LODA_DATE, LODA_ETAT, CIRC
+                  ❌ NON applicable à: CODE_DATE, CODE_ETAT
 
                 - **DATE_PUBLICATION** (ou DATE_PUBLI) : Date de publication officielle
-                  Applicable aux fonds: JORF, LODA, CODE, CIRC, KALI
+                  Applicable aux fonds: JORF, LODA_DATE, LODA_ETAT, CIRC, KALI
+                  ❌ NON applicable à: CODE_DATE, CODE_ETAT
 
                 - **DATE_VERSION** : Date de version du texte consolidé
-                  Applicable aux fonds: CODE, LODA (recherche par date)
+                  Applicable aux fonds: LODA_DATE (recherche par date)
+                  ❌ NON applicable à: CODE_DATE, CODE_ETAT
 
                 - **DATE_PARUTION** : Date de parution au Journal Officiel
                   Applicable au fonds: JORF
+                  ❌ NON applicable à: CODE_DATE, CODE_ETAT
 
                 - **DATE_DECISION** : Date de la décision judiciaire
                   Applicable aux fonds: CETAT, JURI, JUFI, CONSTIT
@@ -760,7 +767,8 @@ class LegiFranceSearchInput:
                   Applicable aux fonds: ACCO, KALI
 
                 - **DATE_ABROGATION** : Date d'abrogation du texte
-                  Applicable aux fonds: LODA, CODE
+                  Applicable aux fonds: LODA_DATE, LODA_ETAT
+                  ❌ NON applicable à: CODE_DATE, CODE_ETAT
 
                 - **DATE_DEPOT** : Date de dépôt (pour accords d'entreprise)
                   Applicable au fonds: ACCO
@@ -805,19 +813,26 @@ class LegiFranceSearchInput:
         Args:
             facette (str): Nom de la facette de date => nom du filtre.
 
+                ⚠️ IMPORTANT: Les filtres de dates ne sont PAS supportés par tous les fonds!
+                Les fonds CODE_DATE et CODE_ETAT ne supportent PAS les filtres de dates.
+
                 **FACETTES DE DATES PRINCIPALES:**
 
                 - **DATE_SIGNATURE** : Date de signature du texte
-                  Applicable aux fonds: JORF, LODA, CODE, CIRC
+                  Applicable aux fonds: JORF, LODA_DATE, LODA_ETAT, CIRC
+                  ❌ NON applicable à: CODE_DATE, CODE_ETAT
 
                 - **DATE_PUBLICATION** (ou DATE_PUBLI) : Date de publication officielle
-                  Applicable aux fonds: JORF, LODA, CODE, CIRC, KALI
+                  Applicable aux fonds: JORF, LODA_DATE, LODA_ETAT, CIRC, KALI
+                  ❌ NON applicable à: CODE_DATE, CODE_ETAT
 
                 - **DATE_VERSION** : Date de version du texte consolidé
-                  Applicable aux fonds: CODE, LODA (recherche par date)
+                  Applicable aux fonds: LODA_DATE (recherche par date)
+                  ❌ NON applicable à: CODE_DATE, CODE_ETAT
 
                 - **DATE_PARUTION** : Date de parution au Journal Officiel
                   Applicable au fonds: JORF
+                  ❌ NON applicable à: CODE_DATE, CODE_ETAT
 
                 - **DATE_DECISION** : Date de la décision judiciaire
                   Applicable aux fonds: CETAT, JURI, JUFI, CONSTIT
@@ -835,7 +850,8 @@ class LegiFranceSearchInput:
                   Applicable aux fonds: ACCO, KALI
 
                 - **DATE_ABROGATION** : Date d'abrogation du texte
-                  Applicable aux fonds: LODA, CODE
+                  Applicable aux fonds: LODA_DATE, LODA_ETAT
+                  ❌ NON applicable à: CODE_DATE, CODE_ETAT
 
                 - **DATE_DEPOT** : Date de dépôt (pour accords d'entreprise)
                   Applicable au fonds: ACCO

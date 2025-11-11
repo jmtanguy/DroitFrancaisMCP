@@ -267,9 +267,28 @@ class LegiFranceAPI:
             filtres_dates (Dict[str, Dict[str, str]], optional): Filtres par périodes de dates.
                 Ignoré si search_input est fourni.
                 Format: {"facette": {"start": "YYYY-MM-DD", "end": "YYYY-MM-DD"}}
+
+                ⚠️ IMPORTANT: Les filtres de dates ne sont PAS supportés par tous les fonds!
+
+                **FONDS SUPPORTANT LES FILTRES DE DATES:**
+                - JORF: DATE_SIGNATURE, DATE_PUBLICATION, DATE_PARUTION
+                - LODA_DATE, LODA_ETAT: DATE_SIGNATURE, DATE_PUBLICATION, DATE_VERSION
+                - JURI, CETAT, JUFI: DATE_DECISION, DATE_ARRET
+                - CONSTIT: DATE_DECISION
+                - KALI: DATE_PUBLICATION, DATE_EFFET
+                - CIRC: DATE_SIGNATURE, DATE_CREATION, DATE_EXPORT
+                - ACCO: DATE_CREATION, DATE_EFFET, DATE_DEPOT
+                - CNIL: DATE_DELIBERATION
+
+                **FONDS NE SUPPORTANT PAS LES FILTRES DE DATES:**
+                - CODE_DATE, CODE_ETAT: ❌ Utilisez uniquement les filtres de valeurs
+                  (states, codeNames) pour ces fonds
+
                 Exemples:
-                    - {"DATE_SIGNATURE": {"start": "2020-01-01", "end": "2023-12-31"}}
-                    - {"DATE_PUBLICATION": {"start": "2022-01-01", "end": "2022-12-31"}}
+                    - {"DATE_SIGNATURE": {"start": "2020-01-01", "end": "2023-12-31"}}  # Pour JORF, LODA
+                    - {"DATE_PUBLICATION": {"start": "2022-01-01", "end": "2022-12-31"}}  # Pour JORF, LODA, KALI
+                    - {"DATE_DECISION": {"start": "2021-01-01", "end": "2024-12-31"}}  # Pour JURI, CETAT
+
                 Voir docstring de LegiFranceSearchInput.add_filtre_dates pour toutes les facettes.
                 Défaut: None (pas de filtres de dates)
 
