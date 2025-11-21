@@ -116,10 +116,10 @@ if ($LASTEXITCODE -ne 0) {
 }
 
 # Configuration Claude Desktop
-$currentPath = (Get-Location).Path
-$pythonPath = "$currentPath\.venv\Scripts\python.exe"
-$mcpPath = "$currentPath\droit_francais_MCP.py"
-$configPath = "$env:APPDATA\Claude\claude_desktop_config.json"
+$currentPath = (Get-Location).Path -replace '\\', '/'
+$pythonPath = "$currentPath/.venv/Scripts/python.exe"
+$mcpPath = "$currentPath/droit_francais_MCP.py"
+$configPath = Join-Path $env:APPDATA "Claude" | Join-Path -ChildPath "claude_desktop_config.json"
 
 Write-Header "Installation terminée !"
 

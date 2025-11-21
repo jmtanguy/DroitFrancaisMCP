@@ -16,7 +16,6 @@ import sys
 from typing import Any, Dict, List, Optional, Union
 from fastmcp import FastMCP
 
-from __version__ import __author__, __description__, __version__
 from api_judilibre import JudilibreAPI
 from api_legifrance import LegifranceAPI
 
@@ -26,7 +25,7 @@ from api_legifrance import LegifranceAPI
 
 # Configuration du logging pour debugging
 logging.basicConfig(
-    level=logging.DEBUG,
+    level=logging.WARNING,
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     handlers=[
         logging.StreamHandler(sys.stderr),  # Envoi vers stderr pour MCP
@@ -36,9 +35,9 @@ logger = logging.getLogger(__name__)
 
 # Initialisation de FastMCP
 try:
-    mcp = FastMCP(f"FR Légifrance et Judilibre MCP Server v{__version__} - Droit Français Officiel")
+    mcp = FastMCP(f"FR Légifrance et Judilibre MCP Server - Droit Français Officiel")
 except Exception as e:
-    logger.error(f"ERREUR ÉTAPE 1: Échec de l'initialisation du serveur MCP: {e}")
+    logger.error(f"Échec de l'initialisation du serveur MCP: {e}")
     raise
 
 # Initialisation de l'API LegiFrance
@@ -324,7 +323,7 @@ def consulter_legifrance(id: str) -> Any:
         return article
 
     except Exception as e:
-        logger.error(f"Erreur lors de la récupération de l'article '{id}': {e}")
+        logger.error(f"Erreur lors de la récupération de l'article '{id}'")
         return {"erreur": f"Erreur de récupération d'article: {str(e)}"}
 
 
@@ -380,7 +379,7 @@ def obtenir_taxonomie_judilibre(
 
     except Exception as e:
         logger.error(f"Erreur lors de la récupération de la taxonomie: {e}")
-        return {"erreur": f"Erreur taxonomie: {str(e)}"}
+        return {"erreur": f"Erreur taxonomie"}
 
 
 @mcp.tool
@@ -503,7 +502,7 @@ def consulter_decision_judilibre(decision_id: str) -> Any:
 
     except Exception as e:
         logger.error(f"Erreur lors de la récupération de la décision '{decision_id}': {e}")
-        return {"erreur": f"Erreur récupération décision: {str(e)}"}
+        return {"erreur": f"Erreur récupération décision"}
 
 
 if __name__ == "__main__":
