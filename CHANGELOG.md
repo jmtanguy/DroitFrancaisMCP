@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.2.1] - 2025-01-21
+
+### Corrections et améliorations
+
+#### Scripts d'installation
+
+- **install.bat** : Correction des chemins pour utiliser des slashes forward (/) au lieu de backslashes (\) dans la configuration Claude Desktop, garantissant une meilleure compatibilité cross-platform
+- **install.ps1** : Amélioration de la gestion des chemins Windows avec conversion automatique des backslashes en slashes forward pour la configuration JSON de Claude Desktop
+
+#### Gestion des logs
+
+- **Niveau de logging** : Passage du niveau de logging de `DEBUG` à `WARNING` pour réduire la verbosité en production
+- **Messages d'erreur** : Simplification des messages d'erreur retournés par les outils pour une meilleure lisibilité
+
+#### Code
+
+- **Suppression de l'import __version__** : Retrait de l'import non utilisé du module `__version__` dans le fichier principal, simplifiant l'initialisation du serveur MCP
+
 ## [1.2.0] - 2025-01-17
 
 ### Améliorations majeures

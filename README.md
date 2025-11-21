@@ -1,6 +1,6 @@
 # 🏛️ Serveur MCP Droit Français
 
-[![Version](https://img.shields.io/badge/version-1.2.0-blue.svg)](https://github.com/jmtanguy/DroitFrancaisMCP/releases)
+[![Version](https://img.shields.io/badge/version-1.2.1-blue.svg)](https://github.com/jmtanguy/DroitFrancaisMCP/releases)
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://www.python.org/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![MCP](https://img.shields.io/badge/MCP-Compatible-purple)](https://modelcontextprotocol.io/)

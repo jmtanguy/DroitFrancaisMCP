@@ -85,6 +85,12 @@ if errorlevel 1 (
 )
 echo.
 
+:: Convertir les chemins avec des slashes forward pour Claude Desktop
+set "CURRENT_PATH=%CD%"
+set "CURRENT_PATH=%CURRENT_PATH:\=/%"
+set "PYTHON_PATH=%CURRENT_PATH%/.venv/Scripts/python.exe"
+set "MCP_PATH=%CURRENT_PATH%/droit_francais_MCP.py"
+
 :: Afficher les instructions de configuration
 echo.
 echo ========================================================
@@ -102,8 +108,8 @@ echo.
 echo {
 echo   "mcpServers": {
 echo     "droit-francais": {
-echo       "command": "%CD%\.venv\Scripts\python.exe",
-echo       "args": ["%CD%\droit_francais_MCP.py"]
+echo       "command": "%PYTHON_PATH%",
+echo       "args": ["%MCP_PATH%"]
 echo     }
 echo   }
 echo }
